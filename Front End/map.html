@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="RAIfav.png" />
+  <link rel="stylesheet" href="mystyle.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  <title>FactorZ - Map</title>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main">
+    <div class="nav-wrap">
+      <a class="brand" href="/">Factor Z</a>
+      <div class="nav-actions">
+        <a href="/services">Services</a>
+        <a href="/team">Our Team</a>
+        <a href="/goal">Project Goal</a>
+  <a class="btn-dark" href="map.html">Map View</a>
+      </div>
+    </div>
+    
+  </nav>
+  <main>
+    <div class="map-wrapper">
+      <div id="map"></div>
+      <div class="map-controls" style="text-align:center; margin-top:12px;">
+        <button id="analyzeBtn" class="service-cta contact-cta" disabled>Analyze Radar Image</button>
+      </div>
+    </div>
+    <script src="map.js"></script>
+  </main>
+
+
+</body>
+</html>

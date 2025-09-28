@@ -1,0 +1,330 @@
+:root{
+  --bg:#a8f5c4;
+  --text:#0a0f0c;
+  --muted:#3c4a41;
+  --nav-bg:transparent;
+  --button-bg:#16c77a;
+  --button-fg:#e9f5ef;
+  --radius-pill:999px;
+  --radius:14px;
+  --gap:clamp(16px,3vw,28px);
+  --pad:clamp(16px,4vw,40px);
+  --maxw:1200px;
+  --h1:clamp(36px,7vw,84px);
+  --p:clamp(14px,1.6vw,18px);
+  --brand:clamp(16px,1.6vw,18px);
+  --shadow-soft:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Theme notes
+   - Tweak colors, spacing, and shadows here.
+   - Use clamped units for responsive spacing (see --gap, --pad).
+*/
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.4;
+}
+
+/* NAV
+  - What to change: padding, brand size, and nav background.
+  - Use: --pad, --brand, --nav-bg for quick tweaks.
+*/
+.site-nav{
+  position:sticky; top:0; z-index:10;
+  background:var(--nav-bg);
+  padding:14px var(--pad);
+  backdrop-filter:saturate(140%) blur(4px);
+}
+.nav-wrap{
+  margin:0 auto; max-width:var(--maxw);
+  display:flex; align-items:center; justify-content:space-between; gap:var(--gap);
+}
+.brand{
+  font-weight:700; font-size:var(--brand); text-decoration:none; color:var(--text);
+  letter-spacing:.2px;
+}
+.nav-actions{display:flex; align-items:center; gap:18px}
+.nav-actions a{
+  text-decoration:none; color:var(--text); font-size:14px; opacity:.8;
+}
+.nav-actions a:hover{opacity:1}
+.btn-dark{
+  background:var(--button-bg); color:var(--button-fg);
+  padding:10px 16px; border-radius:var(--radius-pill);
+  font-weight:600; box-shadow:var(--shadow-soft);
+  display:inline-flex; align-items:center; gap:8px;
+}
+
+/* HERO
+  - Main headline area. Adjust typography: --h1 for h1 size, --p for paragraphs.
+  - Change layout balance by editing .hero-inner grid-template-columns.
+*/
+.hero{
+  padding:clamp(30px,8vw,80px) var(--pad) clamp(50px,10vw,120px);
+}
+.hero-inner{
+  margin:0 auto; max-width:var(--maxw);
+  display:grid; align-items:stretch; gap:clamp(24px,5vw,60px);
+  grid-template-columns:1.05fr .95fr;
+}
+.hero h1{
+  margin:0 0 16px; font-size:var(--h1); line-height:1.05; letter-spacing:-0.5px;
+}
+.hero p{
+  margin:0 0 26px; color:var(--muted); font-size:var(--p); max-width:56ch;
+}
+.map{
+  display:inline-block; background:var(--button-bg); color:var(--button-fg);
+  padding:12px 18px; border-radius:var(--radius-pill); font-weight:600; text-decoration:none;
+  box-shadow:var(--shadow-button);
+  transition: box-shadow 180ms ease, transform 150ms ease;
+  will-change: transform, box-shadow;
+}
+
+/* HERO button animation: match contact hover/focus behavior */
+.cta:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-strong);
+}
+.cta:focus-visible,
+.cta:focus{
+  outline: none;
+  box-shadow: var(--shadow-button-strong), 0 0 0 6px rgba(22,199,122,0.06);
+}
+.cta:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(10,15,12,0.08);
+}
+
+/* 3D container
+  - Hosts the WebGL canvas. Change height to make the scene bigger/smaller.
+  - If shadows are clipped, check ancestor overflow values.
+*/
+#container3D{
+  position:relative;
+  width:100%;
+  max-width:var(--maxw);
+  margin:32px auto; /* space around the 3D area */
+  height:clamp(300px, 50vh, 700px); /* responsive height */
+  overflow:hidden;
+  border-radius:12px;
+}
+
+#container3D canvas {
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  display:block;
+  background-color: transparent;
+}
+/* Responsive breakpoint (<=960px)
+  - Collapse grids and reduce padding for narrow screens.
+*/
+@media (max-width:960px){
+  .hero-inner{ grid-template-columns:1fr; }
+  .art{ order:-1; }
+  .nav-actions{ gap:12px }
+  .btn-dark{ padding:8px 14px }
+}
+
+/* HERO 3D area
+  - Controls the right-hand 3D column. Tweak alignment or spacing here.
+*/
+.hero-3d{
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  background-color: transparent;
+}
+.hero-3d #container3D{
+  margin:0;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  background-color: transparent;
+}
+
+/* TEAM
+  - Card grid and spacing for team members. Adjust grid-template-columns to change layout.
+*/
+.team{
+  padding: clamp(40px, 6vw, 100px) var(--pad); /* larger top/bottom spacing */
+  background: transparent;
+}
+.team-inner{
+  margin: 0 auto; max-width: var(--maxw);
+  padding-top: 12px;
+}
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(18px, 3vw, 28px);
+  margin-top: 20px;
+}
+.team-member{
+  background: rgba(255,255,255,0.6);
+  padding: clamp(14px, 2vw, 22px);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.team-member h3{ margin:0; font-size:18px; }
+.team-member .title{ margin:0; color:var(--muted); font-size:14px; font-weight:600; }
+.team-member .desc{ margin:6px 0 0; color:var(--text); font-size:var(--p); }
+
+@media (max-width:960px){
+  .team-grid{ grid-template-columns: 1fr; }
+}
+
+/* SERVICES */
+.services{ padding: clamp(30px, 6vw, 80px) var(--pad); background: transparent; }
+.services-inner{ max-width:var(--maxw); margin:0 auto; }
+/* Card wrapper gives the section contrast against the page background */
+.services-card{
+  background: rgba(255, 255, 255, 0.289);
+  border-radius:16px;
+  padding:28px;
+  box-shadow: 0 18px 40px rgba(10,15,12,0.08);
+  border: 1px solid rgba(10,15,12,0.04);
+}
+/* reuse the team reveal for services card */
+.services-card.reveal { animation: teamReveal 900ms cubic-bezier(.2,.9,.2,1); }
+  /* contact form reveal matches team reveal timing */
+  .contact-form.reveal { animation: teamReveal 900ms cubic-bezier(.2,.9,.2,1); }
+.service-grid{ display:grid; grid-template-columns: 420px 1fr; gap:28px; align-items:center; margin-top:8px }
+.service-image{ background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02)); padding:8px; border-radius:12px; }
+.service-image img{ width:100%; height:auto; border-radius:10px; display:block }
+.service-desc{ padding:6px 10px }
+.service-desc h3{ margin:0 0 8px; font-size:20px }
+.service-desc p{ margin:0 0 14px; color:var(--muted); font-size:var(--p); line-height:1.45 }
+.service-cta{
+  display:inline-block;
+  /* softer treatment: muted text like team titles and a light green wash instead of solid white on green */
+  background: rgba(22, 199, 122, 0.219);
+  color: var(--muted);
+  padding:10px 14px; border-radius:10px; text-decoration:none;
+  font-weight:600;
+  border:1px solid rgba(22,199,122,0.18);
+  box-shadow: 0 8px 20px rgba(10,15,12,0.06);
+}
+.service-cta:hover{
+  transform: translateY(-2px);
+  box-shadow:0 18px 40px rgba(10,15,12,0.10);
+  background: rgba(22,199,122,0.12);
+}
+
+@media (max-width:960px){
+  .service-grid{ grid-template-columns: 1fr; }
+  .service-image{ order:-1 }
+}
+
+/* CONTACT
+  - Contact form layout and info cards. Change .contact-grid columns to adjust form vs info width.
+  - Form behavior is in contact.js; this file controls only presentation.
+*/
+.contact{
+  padding: clamp(36px, 6vw, 90px) var(--pad);
+  background: transparent;
+}
+.contact-inner{ max-width:var(--maxw); margin:0 auto; }
+.contact-inner h2{ margin:0 0 18px; font-size:28px }
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:24px;
+  align-items:start;
+}
+.contact-form{ background: rgba(255,255,255,0.9); padding:20px; border-radius:12px; box-shadow:var(--shadow-soft) }
+.contact-form form{ display:flex; flex-direction:column; gap:12px }
+.contact-form label{ font-size:13px; color:var(--muted); font-weight:600 }
+.contact-form input,
+.contact-form textarea{ padding:12px 14px; border-radius:10px; border:1px solid rgba(10,15,12,0.08); font-size:15px }
+.contact-form input:focus, .contact-form textarea:focus{ outline:none; box-shadow:0 6px 20px rgba(22,199,122,0.12); border-color:var(--button-bg) }
+.form-actions{ display:flex; gap:12px; align-items:center }
+.form-note{ margin:8px 0 0; color:var(--muted); font-size:13px }
+.contact-info{ display:flex; flex-direction:column; gap:12px }
+.info-card{ background: rgba(255,255,255,0.85); padding:14px; border-radius:10px; box-shadow:var(--shadow-soft) }
+.info-card h3{ margin:0 0 6px }
+
+/* CONTACT - buttons
+  - Button parameters live in the button system near the top. Change --shadow-button for shadow.
+  - Use .cta and .btn-dark (legacy) or .btn / .btn--primary for new usage.
+*/
+.contact-form button,
+.contact-form .cta,
+.contact-form .btn-dark{
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  position: relative;
+  background-clip: padding-box;
+  box-shadow: 0 12px 28px rgba(10,15,12,0.14) !important;
+  transition: box-shadow 180ms ease, transform 150ms ease;
+  /* visual styles for buttons in the contact card */
+  background: var(--button-bg);
+  color: var(--button-fg);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.contact-form button:hover,
+.contact-form .cta:hover,
+.contact-form .btn-dark:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 48px rgba(10,15,12,0.20) !important;
+}
+
+/* Focus states: include focus fallback and make visible via shadow ring */
+
+.contact-form .cta:active,
+.contact-form .btn-dark:active,
+.contact-form button:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(10,15,12,0.10) !important;
+}
+
+/* Accessible focus ring for contact buttons */
+.contact-form button:focus-visible,
+.contact-form .cta:focus-visible,
+.contact-form .btn-dark:focus-visible{
+  outline: none;
+  box-shadow: 0 6px 18px rgba(10,15,12,0.10) , 0 0 0 6px rgba(22,199,122,0.08) !important;
+}
+
+@media (max-width:960px){
+  .contact-grid{ grid-template-columns: 1fr; }
+  .form-actions{ flex-direction:column; align-items:stretch }
+}
+
+#map { 
+  height: 500px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.map-wrapper{
+  display:block;
+  max-width:var(--maxw);
+  margin: 24px auto;
+  padding: 12px;
+}
+
+.map-controls{ display:flex; justify-content:center; }
+
+/* make map responsive on small screens */
+@media (max-width:640px){
+  #map{ height: 360px; }
+}
+

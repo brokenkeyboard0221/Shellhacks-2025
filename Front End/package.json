@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "image-size": "^2.0.2",
+    "three": "^0.180.0"
+  }
+}

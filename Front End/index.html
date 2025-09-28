@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="RAIfav.png" />
+  <link rel="stylesheet" href="mystyle.css" />
+  <style>
+    /* Smooth scrolling for in-page navigation */
+    html { scroll-behavior: smooth; }
+    /* small reveal animation when scrolled-to */
+    #team.reveal { animation: teamReveal 900ms cubic-bezier(.2,.9,.2,1); }
+    @keyframes teamReveal {
+      0% { transform: translateY(-6px); box-shadow: 0 0 0 rgba(0,0,0,0); }
+      50% { transform: translateY(0); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+      100% { box-shadow: none; transform: translateY(0); }
+    }
+  </style>
+  <title>FactorZ - Home</title>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main">
+    <div class="nav-wrap">
+      <a class="brand" href="/">Factor Z</a>
+      <div class="nav-actions">
+        <a href="/services">Services</a>
+        <a href="/team">Our Team</a>
+        <a href="/contactus">Contact Us</a>
+        <a href="/goal">Project Goal</a>
+        <a class="btn-dark" href="map.html">Map View</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="copy">
+        <h1>National Awareness, Zero Blind Spots.</h1>
+        <p>Mapping the Invisible since 2025.</p>
+        <a class="map" href="#map">Interactive Map</a>
+      </div>
+
+      <!--Main 3D area: placed as a sibling of .copy so it aligns right -->
+      <div class="hero-3d">
+        <div id="container3D"></div>
+      </div>
+
+      <!--Main Slogan Art-->
+
+    </div>
+  </header>
+  <section id="services" class="services">
+    <div class="services-inner">
+      <h2>Services</h2>
+      <div class="services-card">
+      <div class="service-grid">
+        <div class="service-image">
+          <img src="ServiceRadImg.png" alt="Radar Analysis" />
+        </div>
+        <div class="service-desc">
+          <h3>Radar Analysis</h3>
+          <p>Using the Google ADK and agent-to-agent (A2A) technology, we create image analysis of reflective maps based on the selection you provide by clicking on the interactive map. Our pipeline accepts your map selection, sends it to the server for model-driven analysis, and returns visual and textual insights tailored to the region you selected.</p>
+          <a class="service-cta" href="map.html">Try Radar Analysis</a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+  <header id="team" class = "team">
+    <div class = "team-inner">
+      <h2>Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <h3>Nicholas Herrera Cuesta</h3>
+          <p class="title">Front-End & Agent Development</p>
+          <p class="desc">Builds responsive, 3D-aware interfaces and agent handoffs, prioritizing usability, clarity, and smooth real-time performance.</p>
+        </div>
+
+        <div class="team-member">
+          <h3>Luis Duque</h3>
+          <p class="title">Back-End & Agent Development</p>
+          <p class="desc">Specializes in event-driven backends and agent tooling—robust APIs, clear data contracts, and deep observability that keep real-time workflows fast and predictable.</p>
+        </div>
+
+        <div class="team-member">
+          <h3>Bryan Portelles</h3>
+          <p class="title">Back-End & Agent Development</p>
+          <p class="desc">Engineers geospatial APIs and retrieval layers, trimming query latency with smart indexing, caching, and schema tuning.</p>
+        </div>
+
+        <div class="team-member">
+          <h3>Jaed Pizarro</h3>
+          <p class="title">Back-End & A2A Development</p>
+          <p class="desc">Designs agent-to-agent (A2A) protocols and orchestration, enabling secure, reliable inter-agent messaging, negotiation, and handoffs across services.</p>
+        </div>
+      </div>
+    </div>
+
+  </header>
+  <section id="contact" class="contact">
+    <div class="contact-inner">
+      <h2>Contact Us</h2>
+
+      <div class="contact-grid">
+        <div class="contact-form">
+          <form id="contactForm" action="#" method="post" novalidate>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your full name" />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@company.com" />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="How can we help?"></textarea>
+
+            <div class="form-actions">
+              <button type="submit" class="cta">Send Message</button>
+              <button type="reset" class="btn-dark">Reset</button>
+            </div>
+
+            <p class="form-note">Or email us directly at <a href="mailto:contact@factorz.com">contact@factorz.com</a></p>
+          </form>
+        </div>
+
+        <aside class="contact-info" aria-label="Contact details">
+          <div class="info-card">
+            <h3>Headquarters</h3>
+            <p>11200 SW 8th St<br/>Miami, FL 33199</p>
+          </div>
+          <div class="info-card">
+            <h3>Support</h3>
+            <p><a href="mailto:support@factorz.com">support@factorz.com</a><br/>Mon–Fri, 9am–5pm</p>
+          </div>
+          <div class="info-card">
+            <h3>Phone</h3>
+            <p>+1 (305) 348-2000</p>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <script type="module" src="./main.js"></script>
+  <script src="./contact.js"></script>
+  <script src="./teamScroll.js"></script>
+</body>
+</html>

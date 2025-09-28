@@ -1,0 +1,114 @@
+:root{
+  --bg:#a8f5c4;
+  --text:#0a0f0c;
+  --muted:#3c4a41;
+  --nav-bg:transparent;
+  --button-bg:#16c77a;
+  --button-fg:#e9f5ef;
+  --radius-pill:999px;
+  --radius:14px;
+  --gap:clamp(16px,3vw,28px);
+  --pad:clamp(16px,4vw,40px);
+  --maxw:1200px;
+  --h1:clamp(36px,7vw,84px);
+  --p:clamp(14px,1.6vw,18px);
+  --brand:clamp(16px,1.6vw,18px);
+  --shadow-soft:0 10px 30px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.4;
+}
+
+/* NAV
+  - What to change: padding, brand size, and nav background.
+  - Use: --pad, --brand, --nav-bg for quick tweaks.
+*/
+.site-nav{
+  position:sticky; top:0; z-index:10;
+  background:var(--nav-bg);
+  padding:14px var(--pad);
+  backdrop-filter:saturate(140%) blur(4px);
+}
+.nav-wrap{
+  margin:0 auto; max-width:var(--maxw);
+  display:flex; align-items:center; justify-content:space-between; gap:var(--gap);
+}
+.brand{
+  font-weight:700; font-size:var(--brand); text-decoration:none; color:var(--text);
+  letter-spacing:.2px;
+}
+.nav-actions{display:flex; align-items:center; gap:18px}
+.nav-actions a{
+  text-decoration:none; color:var(--text); font-size:14px; opacity:.8;
+}
+.nav-actions a:hover{opacity:1}
+.btn-dark{
+  background:var(--button-bg); color:var(--button-fg);
+  padding:10px 16px; border-radius:var(--radius-pill);
+  font-weight:600; box-shadow:var(--shadow-soft);
+  display:inline-flex; align-items:center; gap:8px;
+}
+.result{
+  padding:clamp(30px,8vw,80px) var(--pad) clamp(50px,10vw,120px);
+}
+
+/* Result page layout using CSS Grid so we can place the title, snapshot,
+   lat/long, radar image, status, city/state, and recommended action.
+   The HTML in `result.html` uses IDs: Snapshot, LatLong, Status, City, State,
+   RecAct and radImg — we target those directly so no HTML changes are required. */
+.result-inner{
+  margin:0 auto; max-width:var(--maxw);
+  display:grid;
+  grid-template-columns: 1fr 340px;
+  /* ensure one row per template-area line to avoid implicit sizing/overlap */
+  grid-template-rows: repeat(6, auto);
+  grid-template-areas:
+    "header header"
+    "meta status"
+    "rad status"
+    "citystate status"
+    "rec rec";
+  gap:clamp(18px,4vw,36px);
+  align-items:start;
+}
+
+/* Area assignments */
+.result h1 { grid-area: header; margin:0 0 8px; font-size:var(--h1); line-height:1.05; }
+#Snapshot { grid-area: meta; margin:0 0 6px 0; color:var(--muted); font-size:var(--p); display:inline-block; width:calc(50% - 8px); box-sizing:border-box; text-align:left; }
+/* Snapshot and LatLong are both placed in the 'meta' area (left column). On
+  wide screens they appear side-by-side; on narrow screens they stack. */
+#LatLong { grid-area: meta; margin:0 0 6px 0; color:var(--muted); font-weight:600; display:inline-block; width:calc(50% - 8px); box-sizing:border-box; text-align:right; font-size:var(--p); }
+#radImg { grid-area: rad; width:100%; height:auto; border-radius:8px; display:block; }
+#Status { grid-area: status; justify-self:end; align-self:center; margin:0; font-weight:700; color:var(--muted); font-size:var(--p); }
+#CityState { grid-area: citystate; margin:6px 0 0; color:var(--muted); display:flex; gap:6px; align-items:center; }
+#CityState #City, #CityState #State { font-size:var(--p); }
+#RecAct { grid-area: rec; margin-top:8px; font-weight:600; background: rgba(255,255,255,0.9); padding:10px; border-radius:8px; box-shadow:var(--shadow-soft); font-size:var(--p); }
+
+/* Make sure headings inside the grid have sensible spacing */
+.result-inner h1 { margin:0; }
+.result-inner h3 { margin:0; font-size:var(--p); line-height:1.3; }
+
+/* Responsive: stack into a single column on small screens */
+@media (max-width:960px){
+  .result-inner{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "meta"
+      "rad"
+      "status"
+      "citystate"
+      "rec";
+    gap:16px;
+  }
+  /* on small screens stack Snapshot and LatLong */
+  #LatLong, #Snapshot { display:block; width:100%; text-align:left; }
+  #Status { justify-self:start; align-self:start; }
+}
+

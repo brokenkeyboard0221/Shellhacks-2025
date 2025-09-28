@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="RAIfav.png" />
+  <link rel="stylesheet" href="mystyle.css" />
+  <title>FactorZ - Project Goal</title>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main">
+    <div class="nav-wrap">
+      <a class="brand" href="/">Factor Z</a>
+      <div class="nav-actions">
+        <a href="/services">Services</a>
+        <a href="/team">Our Team</a>
+        <a href="/contactus">Contact Us</a>
+        <a href="/goal">Project Goal</a>
+        <a class="btn-dark" href="map.html">Map View</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-main" style="padding:48px var(--pad); max-width:var(--maxw); margin:0 auto;">
+    <h1>Project Goal</h1>
+    <p>This page outlines the core objectives for FactorZ at ShellHacks 2025. Our team is working to solve a real-world problem while leveraging incredible tools provided to us, thanks to the event sponsors: Google ADK and Google A2A.</p>
+
+    <section class="goal-details" style="margin-top:24px; background:rgba(255,255,255,0.92); padding:20px; border-radius:12px; box-shadow:var(--shadow-soft);">
+      <h2>Objective</h2>
+      <p>&emsp;Using various AI agents, we aim to build a system that delivers faster, more accessible storm warnings and situational awareness. A user selects a location on an interactive map, and the system retrieves the longitude and latitude. That data is checked against a database of radar towers provided by the National Weather Service.<br><br>
+        &emsp;Once the appropriate radar tower is identified, another agent requests the reflectivity map of the area. The radar image is then analyzed by an agent to assess storm patterns. If a dangerous weather event is detected, the system determines the severity and returns a set of outputs, including:
+</p>
+
+    <ul>
+        <li>The city and state of the selected location</li>
+        <li>The assessed danger level</li>
+        <li>Immediate recommended actions (evacuation or other measures depending on severity)</li>
+        <li>The radar reflectivity map image as supporting proof</li>
+        <li>The latitude and longitude originally provided by the user</li>
+    </ul>
+
+        <h2>Goal</h2>
+        <p>&emsp;The ultimate goal is to create a faster response system for weather hazards. Government-issued warnings often face delays, which puts people at risk. Additionally, underprivileged areas may not receive timely alerts or any alerts at all. By automating analysis and response, this system seeks to empower communities with immediate, actionable weather intelligence.</p>
+
+
+      <h3>Milestones</h3>
+      <ul>
+        <li>Interactive map with selection-based analysis</li>
+        <li>Automated image analysis and reporting</li>
+        <li>Scalable ingestion and agent orchestration</li>
+      </ul>
+
+        
+      
+      <!-- Requested bulleted outputs -->
+    </section>
+  </main>
+
+  <script src="./contact.js"></script>
+  <script src="./teamScroll.js"></script>
+</body>
+</html>
